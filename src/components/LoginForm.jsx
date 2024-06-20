@@ -48,14 +48,13 @@ const LoginForm = () => {
         <button type="submit" className={isSubmitting ? 'submitting' : ''} disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : isRegistering ? 'Register' : 'Login'}
         </button>
-        <p>
-          {isRegistering ? 'Already have an account? ' : 'New here? '}
-          <p>
-          <button type="button" className="toggle-button" onClick={toggleMode}>
-            {isRegistering ? 'Login' : 'Register'}
-          </button>
+        <div className="toggle-container">
+          <p>{isRegistering ? 'Already have an account? ' : 'New here? '}
+            <button type="button" className="toggle-button" onClick={toggleMode}>
+              {isRegistering ? 'Login' : 'Register'}
+            </button>
           </p>
-        </p>
+        </div>
       </form>
     </div>
   );

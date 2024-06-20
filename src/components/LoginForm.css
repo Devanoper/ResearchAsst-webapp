@@ -8,6 +8,7 @@
   width: 100%;
   box-sizing: border-box;
   transition: transform 0.3s, box-shadow 0.3s;
+  margin: 0 auto; /* Center the form horizontally */
 }
 
 .login-form:hover {
@@ -30,26 +31,44 @@
   margin-bottom: 15px;
 }
 
+/* Label Styles */
 .login-form .input-group label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+  transition: color 0.3s;
 }
 
-.login-form .input-group input,
-.login-form button,
-.login-form .toggle-button {
+
+/* Input Styles */
+.login-form .input-group input {
   width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s;
+  background-color: #f9f9f9;
+}
+
+.login-form .input-group input:focus {
+  background-color: #fff;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
 }
 
 .night-mode .login-form .input-group input {
   background: #555;
   border: 1px solid #444;
   color: #ddd;
+}
+
+.night-mode .login-form .input-group input:focus {
+  background-color: #666;
+  border-color: #66aaff;
+  box-shadow: 0 0 5px rgba(102, 170, 255, 0.5);
 }
 
 .login-form button {
@@ -61,11 +80,12 @@
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  margin-left: 140px;
 }
 
 .login-form button:hover {
   background: #0056b3;
-  transform: translateY(-3px);
+
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -83,18 +103,47 @@
   text-align: center;
 }
 
-.login-form .toggle-button {
-  width: calc(95%);
+/* Center the message and button */
+.login-form .toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 10px;
+}
+
+/* Make the toggle message inline */
+.login-form .toggle-container p {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Adjust the button appearance */
+.login-form .toggle-container .toggle-button {
   background: none;
   border: none;
   color: #007bff;
   cursor: pointer;
   font-size: inherit;
-  text-decoration: underline;
-  text-align: center;
+ 
+  margin-left: 5px;
+  padding: 0;
+  transition: color 0.3s;
 }
 
-.night-mode .login-form .toggle-button {
+.login-form .toggle-container .toggle-button:hover {
+  color: #0056b3;
+}
+
+/* Adjust night mode styles */
+.night-mode .login-form .toggle-container .toggle-button {
   color: #66aaff;
+}
+
+.night-mode .login-form .toggle-container .toggle-button:hover {
+  color: #5599dd;
+}
+
+.night-mode .login-form .input-group label {
+  color: #ddd; /* Set label color to white in night mode */
 }

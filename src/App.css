@@ -27,13 +27,13 @@
 
 .intro-section {
   flex: 1;
-  padding: 20px;
+  padding: 100px;
   text-align: left;
   max-width: 50%;
 }
 
 .intro-section h2 {
-  font-size: 3rem;
+  font-size: 3.2rem;
   margin-bottom: 10px;
   font-weight: bold;
   color: #f8f8f8;
