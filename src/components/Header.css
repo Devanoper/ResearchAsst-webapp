@@ -1,26 +1,54 @@
+/* Header.css */
 .header {
-  background: #282c34; 
-  padding: 5px 20px; 
+  background: #282c34;
+  padding: 5px 20px;
   border-bottom: 1px solid #444;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Aligns items to the start and end of the header */
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.night-mode {
+  background: #1c1c1c;
+  color: #ddd;
 }
 
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 100%;
+  justify-content: space-between; /* Ensures logo and toggle button are spaced apart */
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #61dafb; 
+  color: #61dafb;
+  margin-right: auto; /* Pushes "Research Assistant" to the left */
+}
+
+.night-mode .logo {
+  color: #ddd;
+}
+
+.toggle-mode {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  margin-right: 30px; /* Adjust margin-right as needed */
+}
+
+.toggle-mode:hover {
+  background-color: #0056b3;
 }

@@ -1,6 +1,10 @@
 import './FeatureCards.css';
+import { useNightMode } from '../NightModeContext';
+import { useState } from 'react';
 
 const FeatureCards = () => {
+  const { isNightMode } = useNightMode();
+
   const features = [
     {
       icon: 'feature-icon1.png',
@@ -24,11 +28,18 @@ const FeatureCards = () => {
     },
   ];
 
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
-    <div className="feature-cards-section">
+    <div className={`feature-cards-section ${isNightMode ? 'night-mode' : ''}`}>
       <div className="feature-cards-container">
         {features.map((feature, index) => (
-          <div key={index} className="feature-card">
+          <div
+            key={index}
+            className={`feature-card ${hoveredIndex === index ? 'hovered' : ''}`}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
             <div className="feature-card-logo">
               <img src={feature.icon} alt={`${feature.title} logo`} />
             </div>
