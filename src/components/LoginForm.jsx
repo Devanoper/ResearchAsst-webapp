@@ -4,15 +4,14 @@ import { useState } from 'react';
 
 const LoginForm = () => {
   const { isNightMode } = useNightMode();
-  const [isRegistering, setIsRegistering] = useState(false); // State to toggle between login and register modes
-  const [isSubmitting, setIsSubmitting] = useState(false); // State for submit animation
-  const [hovered, setHovered] = useState(false); // State for hover effect
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call or form submission delay
     setTimeout(() => {
       setIsSubmitting(false);
     }, 1500);

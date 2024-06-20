@@ -38,7 +38,7 @@
 .login-form .input-group input,
 .login-form button,
 .login-form .toggle-button {
-  width: calc(100% - 20px); /* Adjusted width to accommodate padding */
+  width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;

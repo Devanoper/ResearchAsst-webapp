@@ -4,7 +4,7 @@
   padding: 5px 20px;
   border-bottom: 1px solid #444;
   display: flex;
-  justify-content: space-between; /* Aligns items to the start and end of the header */
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
@@ -24,14 +24,14 @@
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between; /* Ensures logo and toggle button are spaced apart */
+  justify-content: space-between;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: #61dafb;
-  margin-right: auto; /* Pushes "Research Assistant" to the left */
+  margin-right: auto;
 }
 
 .night-mode .logo {
@@ -46,7 +46,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  margin-right: 30px; /* Adjust margin-right as needed */
+  margin-right: 30px;
 }
 
 .toggle-mode:hover {
