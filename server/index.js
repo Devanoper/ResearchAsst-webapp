@@ -18,10 +18,8 @@ const pool = new Pool({
 app.use(cors());
 app.use(express.json());
 
-// Secret key for JWT
 const SECRET_KEY = 'your_secret_key';
 
-// Test the database connection
 pool.connect((err, client, release) => {
   if (err) {
     console.error('Error acquiring client', err.stack);
@@ -31,7 +29,6 @@ pool.connect((err, client, release) => {
   }
 });
 
-// User registration
 app.post('/api/auth/register', async (req, res) => {
   const { username, password, email } = req.body;
   try {
@@ -44,7 +41,6 @@ app.post('/api/auth/register', async (req, res) => {
   }
 });
 
-// User login
 app.post('/api/auth/login', async (req, res) => {
   const { username, password } = req.body;
   try {

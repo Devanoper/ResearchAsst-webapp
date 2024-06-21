@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm'; // Import RegisterForm component
+import RegisterForm from './components/RegisterForm';
 import FeatureCards from './components/FeatureCards';
 import { useNightMode } from './NightModeContext';
 

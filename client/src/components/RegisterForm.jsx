@@ -2,7 +2,7 @@ import './RegisterForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useNightMode } from '../NightModeContext';
 import { useState } from 'react';
-import axios from './axiosConfig'; // Import the configured axios instance
+import axios from './axiosConfig';
 
 const RegisterForm = () => {
   const { isNightMode } = useNightMode();
@@ -38,7 +38,7 @@ const RegisterForm = () => {
   };
 
   const handleLoginClick = () => {
-    navigate('/'); // Navigate to '/login' path
+    navigate('/');
   };
 
   return (
