@@ -1,59 +1,61 @@
-import { useState } from 'react';
 import './LoginForm.css';
+import { useNightMode } from '../NightModeContext';
+import { useState } from 'react';
 
 const LoginForm = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const { isNightMode } = useNightMode();
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`Username: ${username}, Password: ${password}`);
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 1500);
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    console.log(`Username: ${username}, Email: ${email}, Password: ${password}`);
+  const toggleMode = () => {
+    setIsRegistering(prevState => !prevState);
   };
 
   return (
-    <div className="login-form">
-      <h3>{isLogin ? 'Login' : 'Register'}</h3>
-      <form onSubmit={isLogin ? handleLogin : handleRegister}>
-        <label htmlFor="username">Username</label>
-        <input 
-          type="text" 
-          id="username" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
-          required 
-        />
-        {!isLogin && (
+    <div className={`login-form ${isNightMode ? 'night-mode' : ''}`}>
+      <h2>{isRegistering ? 'Register' : 'Login'}</h2>
+      <form onSubmit={handleSubmit} className={hovered ? 'hovered' : ''} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+        <div className="input-group">
+          <label htmlFor="username">Username</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div className="input-group">
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        {isRegistering && (
           <>
-            <label htmlFor="email">Email</label>
-            <input 
-              type="email" 
-              id="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
-            />
+            <div className="input-group">
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div className="input-group">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" required />
+            </div>
           </>
         )}
-        <label htmlFor="password">Password</label>
-        <input 
-          type="password" 
-          id="password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-        />
-        <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
+        <button type="submit" className={isSubmitting ? 'submitting' : ''} disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : isRegistering ? 'Register' : 'Login'}
+        </button>
+        <div className="toggle-container">
+          <p>{isRegistering ? 'Already have an account? ' : 'New here? '}
+            <button type="button" className="toggle-button" onClick={toggleMode}>
+              {isRegistering ? 'Login' : 'Register'}
+            </button>
+          </p>
+        </div>
       </form>
-      <div className="toggle-form" onClick={() => setIsLogin(!isLogin)}>
-        {isLogin ? 'New here? Register' : 'Already have an account? Login'}
-      </div>
     </div>
   );
 };

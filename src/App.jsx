@@ -1,16 +1,24 @@
 import './App.css';
 import Header from './components/Header';
-import MainContent from './components/MainContent';
 import LoginForm from './components/LoginForm';
+import FeatureCards from './components/FeatureCards';
+import { useNightMode } from './NightModeContext';
 
 function App() {
+  const { isNightMode } = useNightMode();
+
   return (
-    <div className="App">
+    <div className={`App ${isNightMode ? 'night-mode' : ''}`}>
       <Header />
-      <div className="content">
-        <MainContent />
-        <LoginForm />
+      <div className="main-content">
+        <div className="intro-section">
+          <h2>Looking for an AI Research Assistant?</h2>
+        </div>
+        <div className="form-section">
+          <LoginForm />
+        </div>
       </div>
+      <FeatureCards />
     </div>
   );
 }
