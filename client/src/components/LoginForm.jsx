@@ -2,7 +2,7 @@ import './LoginForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useNightMode } from '../NightModeContext';
 import { useState } from 'react';
-import axios from './axiosConfig'; // Import the configured axios instance
+import axios from './axiosConfig';
 
 const LoginForm = () => {
   const { isNightMode } = useNightMode();
@@ -20,9 +20,7 @@ const LoginForm = () => {
     try {
       const response = await axios.post('/api/auth/login', formData);
       alert('Login successful!');
-      // Store the token
       localStorage.setItem('token', response.data.token);
-      // Redirect to dashboard or any other authenticated route
       navigate('/dashboard');
     } catch (error) {
       alert('Login failed: ' + (error.response?.data?.message || error.message));
@@ -40,7 +38,7 @@ const LoginForm = () => {
   };
 
   const handleRegisterClick = () => {
-    navigate('/register'); // Navigate to '/register' path
+    navigate('/register');
   };
 
   return (
