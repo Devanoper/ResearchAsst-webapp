@@ -2,7 +2,7 @@ import './LoginForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useNightMode } from '../NightModeContext';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from './axiosConfig'; // Import the configured axios instance
 
 const LoginForm = () => {
   const { isNightMode } = useNightMode();
@@ -25,7 +25,7 @@ const LoginForm = () => {
       // Redirect to dashboard or any other authenticated route
       navigate('/dashboard');
     } catch (error) {
-      alert('Login failed: ' + error.response.data.message);
+      alert('Login failed: ' + (error.response?.data?.message || error.message));
     } finally {
       setIsSubmitting(false);
     }

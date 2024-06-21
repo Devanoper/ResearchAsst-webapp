@@ -2,14 +2,15 @@ import './RegisterForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useNightMode } from '../NightModeContext';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from './axiosConfig'; // Import the configured axios instance
 
 const RegisterForm = () => {
   const { isNightMode } = useNightMode();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
-    password: ''
+    password: '',
+    email: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -22,7 +23,7 @@ const RegisterForm = () => {
       alert('Registration successful!');
       navigate('/');
     } catch (error) {
-      alert('Registration failed: ' + error.response.data.message);
+      alert('Registration failed: ' + (error.response?.data?.message || error.message));
     } finally {
       setIsSubmitting(false);
     }
@@ -81,6 +82,8 @@ const RegisterForm = () => {
             type="email"
             id="email"
             name="email"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
         </div>
