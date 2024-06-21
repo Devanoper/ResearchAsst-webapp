@@ -1,10 +1,10 @@
-import './LoginForm.css';
+import './RegisterForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useNightMode } from '../NightModeContext';
 import { useState } from 'react';
 import axios from 'axios';
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const { isNightMode } = useNightMode();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -18,14 +18,11 @@ const LoginForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('/api/auth/login', formData);
-      alert('Login successful!');
-      // Store the token
-      localStorage.setItem('token', response.data.token);
-      // Redirect to dashboard or any other authenticated route
-      navigate('/dashboard');
+      await axios.post('/api/auth/register', formData);
+      alert('Registration successful!');
+      navigate('/');
     } catch (error) {
-      alert('Login failed: ' + error.response.data.message);
+      alert('Registration failed: ' + error.response.data.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -39,13 +36,13 @@ const LoginForm = () => {
     }));
   };
 
-  const handleRegisterClick = () => {
-    navigate('/register'); // Navigate to '/register' path
+  const handleLoginClick = () => {
+    navigate('/'); // Navigate to '/login' path
   };
 
   return (
-    <div className={`login-form ${isNightMode ? 'night-mode' : ''}`}>
-      <h2>Login</h2>
+    <div className={`register-form ${isNightMode ? 'night-mode' : ''}`}>
+      <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <label htmlFor="username">Username</label>
@@ -69,15 +66,33 @@ const LoginForm = () => {
             required
           />
         </div>
+        <div className="input-group">
+          <label htmlFor="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+          />
+        </div>
         <button type="submit" className={isSubmitting ? 'submitting' : ''} disabled={isSubmitting}>
-          {isSubmitting ? 'Logging in...' : 'Login'}
+          {isSubmitting ? 'Registering...' : 'Register'}
         </button>
       </form>
-      <div className="register-link">
-        <p> Don&apos;t have an account? <button type="button" onClick={handleRegisterClick}>Register here</button></p>
+      <div className="login-link">
+        <p> Already have an account? <button type="button" onClick={handleLoginClick}>Go back to Login</button></p>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

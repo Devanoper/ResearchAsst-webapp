@@ -1,4 +1,4 @@
-.login-form {
+.register-form {
   background: #fff;
   color: #333;
   border-radius: 10px;
@@ -11,28 +11,28 @@
   margin: 0 auto; /* Center the form horizontally */
 }
 
-.login-form:hover {
+.register-form:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.night-mode .login-form {
+.night-mode .register-form {
   background: #333;
   color: #ddd;
 }
 
-.login-form h2 {
+.register-form h2 {
   margin-bottom: 20px;
   color: inherit;
   text-align: center;
 }
 
-.login-form .input-group {
+.register-form .input-group {
   margin-bottom: 15px;
 }
 
 /* Label Styles */
-.login-form .input-group label {
+.register-form .input-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
@@ -41,8 +41,8 @@
 }
 
 /* Input Styles */
-.login-form .input-group input {
-  width: 100%;
+.register-form .input-group input {
+  width: 100%; /* Full width for alignment */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -51,27 +51,27 @@
   background-color: #f9f9f9;
 }
 
-.login-form .input-group input:focus {
+.register-form .input-group input:focus {
   background-color: #fff;
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
 }
 
-.night-mode .login-form .input-group input {
+.night-mode .register-form .input-group input {
   background: #555;
   border: 1px solid #444;
   color: #ddd;
 }
 
-.night-mode .login-form .input-group input:focus {
+.night-mode .register-form .input-group input:focus {
   background-color: #666;
   border-color: #66aaff;
   box-shadow: 0 0 5px rgba(102, 170, 255, 0.5);
 }
 
 /* Button Styles */
-.login-form button {
+.register-form button {
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -84,56 +84,47 @@
   box-sizing: border-box; /* Ensure box-sizing */
 }
 
-.login-form button:hover {
+.register-form button:hover {
   background: #0056b3;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.login-form button:disabled {
+.register-form button:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
 
-.login-form button.submitting {
+.register-form button.submitting {
   transform: scale(0.95);
 }
 
-.login-form p {
+.register-form p {
   margin-top: 10px;
   text-align: center;
-}
-
-/* Center the message and button */
-.login-form .register-link {
-  text-align: center;
-  margin-top: 10px;
-}
-
-/* Adjust the button appearance */
-.login-form .toggle-button {
-  background: none;
-  border: none;
-  color: #007bff;
-  cursor: pointer;
-  font-size: inherit;
-  padding: 0;
-  transition: color 0.3s;
-  text-align: center; /* Ensure center alignment */
-}
-
-.login-form .toggle-button:hover {
-  color: #000000;
 }
 
 /* Adjust night mode styles */
-.night-mode .login-form .toggle-button {
-  color: #66aaff;
-}
-
-.night-mode .login-form .toggle-button:hover {
-  color: #5599dd;
-}
-
-.night-mode .login-form .input-group label {
+.night-mode .register-form .input-group label {
   color: #ddd; /* Set label color to white in night mode */
+}
+
+/* Styling for the Go back button */
+.register-form .back-to-login {
+  display: block;
+  margin-top: 30px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #ddd;
+  color: #333;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  width: 100%; /* Full width for alignment */
+  box-sizing: border-box; /* Ensure box-sizing */
+  text-align: center;
+}
+
+.register-form .back-to-login:hover {
+  background: #ccc;
 }
