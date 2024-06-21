@@ -1,3 +1,9 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
 .App {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
@@ -9,6 +15,7 @@
   align-items: center;
   color: #fff;
   position: relative;
+  width: 100%; /* Ensure it doesn't exceed the viewport width */
 }
 
 .night-mode {
@@ -23,6 +30,7 @@
   padding: 80px 20px 20px 20px;
   width: 100%;
   flex-wrap: wrap;
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 
 .intro-section {
@@ -30,6 +38,7 @@
   padding: 100px;
   text-align: left;
   max-width: 50%;
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 
 .intro-section h2 {
@@ -52,4 +61,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
