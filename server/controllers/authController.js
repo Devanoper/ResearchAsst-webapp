@@ -1,35 +1,9 @@
-const express = require('express');
-const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { Pool } = require('pg');
+const pool = require('../config/db');
+const SECRET_KEY = process.env.SECRET_KEY;
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-const pool = new Pool({
-  user: 'myuser',
-  host: 'localhost',
-  database: 'myapp',
-  password: 'password',
-  port: 5432,
-});
-
-app.use(cors());
-app.use(express.json());
-
-const SECRET_KEY = 'your_secret_key';
-
-pool.connect((err, client, release) => {
-  if (err) {
-    console.error('Error acquiring client', err.stack);
-  } else {
-    console.log('Database connected successfully');
-    release();
-  }
-});
-
-app.post('/api/auth/register', async (req, res) => {
+exports.register = async (req, res) => {
   const { username, password, email } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -39,9 +13,9 @@ app.post('/api/auth/register', async (req, res) => {
     console.error('Error registering user:', error);
     res.status(500).json({ message: 'Error registering user' });
   }
-});
+};
 
-app.post('/api/auth/login', async (req, res) => {
+exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
     const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
@@ -57,8 +31,4 @@ app.post('/api/auth/login', async (req, res) => {
     console.error('Error logging in:', error);
     res.status(500).json({ message: 'Error logging in' });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+};
