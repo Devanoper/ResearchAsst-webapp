@@ -10,12 +10,19 @@ const RegisterForm = () => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
+    confirmPassword: '',
     email: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -72,7 +79,9 @@ const RegisterForm = () => {
           <input
             type="password"
             id="confirm-password"
-            name="confirm-password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
             required
           />
         </div>
