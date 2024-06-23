@@ -12,18 +12,23 @@ const LoginForm = () => {
     password: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
+    setSuccessMessage('');
 
     try {
       const response = await axios.post('/api/auth/login', formData);
-      alert('Login successful!');
+      setSuccessMessage('Login successful!');
+      await new Promise(resolve => setTimeout(resolve, 1000));
       localStorage.setItem('token', response.data.token);
       navigate('/dashboard');
     } catch (error) {
-      alert('Login failed: ' + (error.response?.data?.message || error.message));
+      setErrorMessage('Login failed: ' + (error.response?.data?.message || error.message));
     } finally {
       setIsSubmitting(false);
     }
@@ -67,12 +72,24 @@ const LoginForm = () => {
             required
           />
         </div>
-        <button type="submit" className={isSubmitting ? 'submitting' : ''} disabled={isSubmitting}>
-          {isSubmitting ? 'Logging in...' : 'Login'}
-        </button>
+        <div className="button-container">
+          <button type="submit" className={`button button-default ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting}>
+            {isSubmitting ? 'Logging in...' : 'Login'}
+          </button>
+        </div>
       </form>
+      {errorMessage && (
+        <div className="alert error" role="alert" aria-live="assertive">
+          {errorMessage}
+        </div>
+      )}
+      {successMessage && (
+        <div className="alert success" role="alert" aria-live="assertive">
+          {successMessage}
+        </div>
+      )}
       <div className="register-link">
-        <p> Don&apos;t have an account? <button type="button" onClick={handleRegisterClick}>Register here</button></p>
+        <p> Don&apos;t have an account? <button type="button" className="button button-transparent" onClick={handleRegisterClick}>Register here</button></p> 
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ const NightModeContext = createContext();
 export const useNightMode = () => useContext(NightModeContext);
 
 export const NightModeProvider = ({ children }) => {
-  const [isNightMode, setIsNightMode] = useState(false);
+  const [isNightMode, setIsNightMode] = useState(true);
 
   const toggleNightMode = () => setIsNightMode(!isNightMode);
 
@@ -18,5 +18,5 @@ export const NightModeProvider = ({ children }) => {
 };
 
 NightModeProvider.propTypes = {
-  children: PropTypes.node.isRequired // Validate that children is a node and is required
+  children: PropTypes.node.isRequired
 };
