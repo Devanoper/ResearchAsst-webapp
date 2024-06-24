@@ -21,7 +21,7 @@ function App() {
           <Header />
           <div className="intro-section">
             <h2>
-              <BubbleText text="Looking for an AI Research Assistant?" />
+              <BubbleText text="Looking for an AI Research  Assistant?" />
             </h2>
           </div>
           <div className="form-section">
