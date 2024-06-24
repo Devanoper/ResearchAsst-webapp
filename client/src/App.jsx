@@ -5,7 +5,6 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import FeatureCards from './components/FeatureCards';
 import { useNightMode } from './NightModeContext';
-import BubbleText from './components/BubbleText';
 import ParticlesBackground from './components/Particles';
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
           <Header />
           <div className="intro-section">
             <h2>
-              <BubbleText text="Looking for an AI Research  Assistant?" />
+              <span>Looking </span><span>for an AI </span><span>Research Assistant?</span>
             </h2>
           </div>
           <div className="form-section">

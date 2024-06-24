@@ -78,3 +78,23 @@ body, html {
   box-sizing: border-box;
   z-index: 2;
 }
+
+h2 {
+  color: hsl(0, 0%, 28%);
+  font-size: 50px;
+  font-weight: bold;
+  font-family: monospace;
+  letter-spacing: 7px;
+  cursor: pointer;
+  position: relative;
+}
+
+h2 span {
+  transition: color 0.5s ease-out, text-shadow 0.5s ease-out;
+}
+
+h2:hover span:nth-child(3) {
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+}
+
