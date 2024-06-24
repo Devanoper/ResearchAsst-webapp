@@ -6,6 +6,7 @@ import RegisterForm from './components/RegisterForm';
 import FeatureCards from './components/FeatureCards';
 import { useNightMode } from './NightModeContext';
 import BubbleText from './components/BubbleText';
+import ParticlesBackground from './components/Particles';
 
 function App() {
   const { isNightMode } = useNightMode();
@@ -13,6 +14,9 @@ function App() {
   return (
     <Router>
       <div className={`App ${isNightMode ? 'night-mode' : ''}`}>
+        <div className="particles-background">
+          <ParticlesBackground />
+        </div>
         <div className="main-content">
           <Header />
           <div className="intro-section">

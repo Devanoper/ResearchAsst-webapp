@@ -9,7 +9,6 @@
   opacity: 1;
 }
 
-/* To the right */
 .hoverText:hover + .hoverText {
   transform: scale(1.1);
   color: rgb(199, 210, 254);
