@@ -136,7 +136,7 @@
   background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
   color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  width: auto; /* Ensure width is set to auto */
+  width: auto;
 }
 
 .button-default:hover {
@@ -158,7 +158,7 @@
 .night-mode .button-default {
   background: linear-gradient(135deg, #3b3bff 0%, #0000ff 100%);
   color: #ddd;
-  width: auto; /* Ensure width is set to auto */
+  width: auto;
 }
 
 .night-mode .button-default:hover {

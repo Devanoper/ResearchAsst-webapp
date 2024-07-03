@@ -19,7 +19,6 @@
   opacity: 0.8;
 }
 
-/* To the left */
 .hoverText:has(+ .hoverText:hover) {
   transform: scale(1.1);
   color: rgb(199, 210, 254);
