@@ -11,7 +11,7 @@
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .night-mode {
@@ -30,6 +30,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: #61dafb;
+  white-space: nowrap; /* Ensures text stays in one line */
   margin-right: auto;
 }
 
@@ -87,5 +88,3 @@
   background-color: #000;
   left: 31px;
 }
-
-

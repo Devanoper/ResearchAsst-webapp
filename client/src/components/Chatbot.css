@@ -1,0 +1,111 @@
+.chatbot {
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+.night-mode .chatbot {
+  background-color: #444;
+  color: #ddd;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  height: 300px;
+  background: #f9f9f9;
+  margin-bottom: 20px;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.night-mode .messages {
+  background: #555;
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  max-width: 70%;
+}
+
+.message.user {
+  background: #e1f5fe;
+  align-self: flex-end;
+}
+
+.message.bot {
+  background: #c8e6c9;
+  align-self: flex-start;
+}
+
+.night-mode .message.user {
+  background: #007bff;
+}
+
+.night-mode .message.bot {
+  background: #66bb6a;
+}
+
+.input-area {
+  display: flex;
+  align-items: center;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.night-mode input[type="text"] {
+  background-color: #666;
+  color: #ddd;
+  border: 1px solid #555;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.night-mode button[type="submit"] {
+  background-color: #0056b3;
+}
+
+button[type="submit"] img {
+  width: 20px;
+  height: 20px;
+}
