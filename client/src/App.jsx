@@ -1,11 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
-import FeatureCards from './components/FeatureCards';
 import { useNightMode } from './NightModeContext';
-import ParticlesBackground from './components/Particles';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   const { isNightMode } = useNightMode();
@@ -13,24 +11,11 @@ function App() {
   return (
     <Router>
       <div className={`App ${isNightMode ? 'night-mode' : ''}`}>
-        <div className="particles-background">
-          <ParticlesBackground />
-        </div>
-        <div className="main-content">
-          <Header />
-          <div className="intro-section">
-            <h2>
-              <span>Looking </span><span>for an AI </span><span>Research Assistant?</span>
-            </h2>
-          </div>
-          <div className="form-section">
-            <Routes>
-              <Route path="/" element={<LoginForm />} />
-              <Route path="/register" element={<RegisterForm />} />
-            </Routes>
-          </div>
-        </div>
-        <FeatureCards />
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard/>} />
+        </Routes>
       </div>
     </Router>
   );
