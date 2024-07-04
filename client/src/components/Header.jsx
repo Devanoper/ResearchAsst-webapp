@@ -25,11 +25,10 @@ const Header = () => {
       <div className="header-content">
         <div className="logo">Research Assistant</div>
         <div className="header-right">
-        <ProfileIcon />
+          <ProfileIcon />
           <div className="toggle-container">
             <ToggleButton isNightMode={isNightMode} toggleNightMode={toggleNightMode} />
           </div>
-          
         </div>
       </div>
     </header>
