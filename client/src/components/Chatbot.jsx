@@ -21,7 +21,8 @@ function Chatbot() {
         <div className="messages">
           {messages.map((msg, index) => (
             <div key={index} className={`message ${msg.user}`}>
-              {msg.text}
+              <img src={msg.user === 'bot' ? '/chatbot-logo.jpg' : '/profile-icon.jpg'} alt={msg.user} className="message-icon" />
+              <div className="message-text">{msg.text}</div>
             </div>
           ))}
         </div>
@@ -31,9 +32,10 @@ function Chatbot() {
             placeholder="Type your question..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           />
           <button type="submit" onClick={handleSend}>
-            <img src="send-icon.png" alt="Send" />
+            <img src="/send-icon.png" alt="Send" />
           </button>
         </div>
       </div>

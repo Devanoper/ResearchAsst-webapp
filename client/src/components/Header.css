@@ -30,33 +30,22 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: #61dafb;
-  white-space: nowrap; /* Ensures text stays in one line */
-  margin-right: auto;
+  white-space: nowrap;
 }
 
 .night-mode .logo {
   color: #ddd;
 }
 
-.toggle-mode {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  margin-right: 30px;
-}
-
-.toggle-mode:hover {
-  background-color: #0056b3;
+.header-right {
+  display: flex;
+  align-items: center;
 }
 
 .toggle-container {
   display: flex;
   align-items: center;
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .toggle-button {
