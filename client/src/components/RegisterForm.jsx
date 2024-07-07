@@ -6,10 +6,10 @@ import { useMutation } from 'react-query';
 import axiosInstance from '../api/axiosInstance';
 
 const register = async (formData) => {
-  const params = new URLSearchParams(formData).toString();
-  const response = await axiosInstance.post(`/api/auth/register?${params}`);
+  const response = await axiosInstance.post('/api/auth/register', formData);
   return response.data;
 };
+
 
 const RegisterForm = () => {
   const { isNightMode } = useNightMode();
