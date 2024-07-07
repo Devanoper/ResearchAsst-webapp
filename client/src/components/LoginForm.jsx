@@ -2,7 +2,13 @@ import './LoginForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useNightMode } from '../NightModeContext';
 import { useState } from 'react';
-import axios from './axiosConfig';
+import { useMutation } from 'react-query';
+import axiosInstance from '../api/axiosInstance';
+
+const login = async (formData) => {
+  const response = await axiosInstance.post('/api/auth/login', formData);
+  return response.data;
+};
 
 const LoginForm = () => {
   const { isNightMode } = useNightMode();
@@ -11,32 +17,32 @@ const LoginForm = () => {
     username: '',
     password: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = async (e) => {
+  const mutation = useMutation(login, {
+    onSuccess: (data) => {
+      setSuccessMessage('Login successful!');
+      localStorage.setItem('token', data.token);
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1000);
+    },
+    onError: (error) => {
+      setErrorMessage('Login failed: ' + (error.response?.data?.detail || error.message));
+    },
+  });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setErrorMessage('');
     setSuccessMessage('');
-
-    try {
-      const response = await axios.post('/api/auth/login', formData);
-      setSuccessMessage('Login successful!');
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      localStorage.setItem('token', response.data.token);
-      navigate('/dashboard');
-    } catch (error) {
-      setErrorMessage('Login failed: ' + (error.response?.data?.message || error.message));
-    } finally {
-      setIsSubmitting(false);
-    }
+    mutation.mutate(formData);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
       [name]: value
     }));
@@ -73,8 +79,8 @@ const LoginForm = () => {
           />
         </div>
         <div className="button-container">
-          <button type="submit" className={`button button-default ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting}>
-            {isSubmitting ? 'Logging in...' : 'Login'}
+          <button type="submit" className={`button button-default ${mutation.isLoading ? 'submitting' : ''}`} disabled={mutation.isLoading}>
+            {mutation.isLoading ? 'Logging in...' : 'Login'}
           </button>
         </div>
       </form>
@@ -89,10 +95,11 @@ const LoginForm = () => {
         </div>
       )}
       <div className="register-link">
-        <p> Don&apos;t have an account? <button type="button" className="button button-transparent" onClick={handleRegisterClick}>Register here</button></p> 
+        <p>Don&apos;t have an account? <button type="button" className="button button-transparent" onClick={handleRegisterClick}>Register here</button></p>
       </div>
     </div>
   );
 };
 
 export default LoginForm;
+

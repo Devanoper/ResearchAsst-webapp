@@ -2,22 +2,41 @@ import './RegisterForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useNightMode } from '../NightModeContext';
 import { useState } from 'react';
-import axios from './axiosConfig';
+import { useMutation } from 'react-query';
+import axiosInstance from '../api/axiosInstance';
+
+const register = async (formData) => {
+  const params = new URLSearchParams(formData).toString();
+  const response = await axiosInstance.post(`/api/auth/register?${params}`);
+  return response.data;
+};
 
 const RegisterForm = () => {
   const { isNightMode } = useNightMode();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
+    name:'',
     password: '',
     confirmPassword: '',
     email: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = async (e) => {
+  const mutation = useMutation(register, {
+    onSuccess: () => {
+      setSuccessMessage('Registration successful! ...redirecting');
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
+    },
+    onError: (error) => {
+      setErrorMessage('Registration failed: ' + (error.response?.data?.detail || error.message));
+    }
+  });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
@@ -27,23 +46,12 @@ const RegisterForm = () => {
       return;
     }
 
-    setIsSubmitting(true);
-
-    try {
-      await axios.post('/api/auth/register', formData);
-      setSuccessMessage('Registration successful!  ....redirecting');
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      navigate('/');
-    } catch (error) {
-      setErrorMessage('Registration failed: ' + (error.response?.data?.message || error.message));
-    } finally {
-      setIsSubmitting(false);
-    }
+    mutation.mutate(formData);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
       [name]: value
     }));
@@ -64,6 +72,17 @@ const RegisterForm = () => {
             id="username"
             name="username"
             value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             required
           />
@@ -102,9 +121,9 @@ const RegisterForm = () => {
           />
         </div>
         <div className="button-container">
-        <button type="submit" className={`button button-default ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting}>
-          {isSubmitting ? 'Registering...' : 'Register'}
-        </button>
+          <button type="submit" className={`button button-default ${mutation.isLoading ? 'submitting' : ''}`} disabled={mutation.isLoading}>
+            {mutation.isLoading ? 'Registering...' : 'Register'}
+          </button>
         </div>
       </form>
       {errorMessage && (
@@ -118,7 +137,7 @@ const RegisterForm = () => {
         </div>
       )}
       <div className="login-link">
-        <p> Already have an account? <button type="button" className="button button-transparent" onClick={handleLoginClick}>Go back to Login</button></p>
+        <p>Already have an account? <button type="button" className="button button-transparent" onClick={handleLoginClick}>Go back to Login</button></p>
       </div>
     </div>
   );
