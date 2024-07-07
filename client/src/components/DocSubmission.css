@@ -12,7 +12,6 @@
   font-size: 1.5rem;
   margin-bottom: 20px;
   text-align: center;
-  color: #fff;
 }
 
 .doc-submission form {
@@ -27,6 +26,8 @@
   margin-bottom: 20px;
   width: 100%;
   max-width: 300px;
+  display: flex;
+  align-items: center;
 }
 
 .file-input-container input[type="file"] {
@@ -50,6 +51,7 @@
   text-align: center;
   border: 1px dashed #555;
   transition: background-color 0.3s;
+  flex: 1; /* Take up remaining space */
 }
 
 .file-input-container label:hover {
@@ -62,18 +64,54 @@
   margin-right: 10px;
 }
 
-.doc-submission button {
-  background-color: #007bff;
+.remove-button {
+  background-color: #dc3545;
   color: #fff;
   border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
+  padding: 8px 16px;
+  font-size: 0.875rem;
   cursor: pointer;
   border-radius: 5px;
+  margin-left: 10px;
   transition: background-color 0.3s;
-  margin-top: 10px;
 }
 
-.doc-submission button:hover {
-  background-color: #0056b3;
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #007bff;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+}
+
+.file-preview {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.file-preview embed {
+  width: 100%;
+  height: 600px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
