@@ -1,5 +1,6 @@
 .profile-icon-container {
   position: relative;
+  display: inline-block;
 }
 
 .profile-icon {
@@ -8,7 +9,7 @@
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .profile-icon:hover {
@@ -34,9 +35,21 @@
   min-width: 200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 1000;
+  animation: dropdownSlideIn 0.3s ease;
 }
 
-.profile-dropdown .username {
+@keyframes dropdownSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.username {
   color: #fff;
   font-weight: bold;
   margin-bottom: 10px;
@@ -51,7 +64,11 @@
   font-size: 14px;
   padding: 8px 0;
   text-align: center;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  background: none;
+  border: none;
 }
 
 .dropdown-link:hover {
@@ -59,21 +76,11 @@
   color: #80bfff;
 }
 
-.sign-out {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #ff4d4d;
-}
-
-.sign-out:hover {
-  color: #ff1a1a;
-}
-
 .night-mode .profile-dropdown {
   background-color: #222;
 }
 
-.night-mode .profile-dropdown .username {
+.night-mode .username {
   color: #ddd;
 }
 
@@ -83,12 +90,4 @@
 
 .night-mode .dropdown-link:hover {
   color: #a8e6ff;
-}
-
-.night-mode .sign-out {
-  color: #ff4d4d;
-}
-
-.night-mode .sign-out:hover {
-  color: #ff1a1a;
 }

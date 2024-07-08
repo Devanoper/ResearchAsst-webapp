@@ -22,7 +22,7 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollPos]);
 
-  const isLogin = location.pathname === '/' || location.pathname === '/register';
+  const isLogin = location.pathname === '/' || location.pathname === '/register' || location.pathname === '/login';
 
 return (
   <header className={`header ${isNightMode ? 'night-mode' : ''}`} style={{ top: visible ? '0' : '-80px' }}>

@@ -10,30 +10,28 @@ const register = async (formData) => {
   return response.data;
 };
 
-
 const RegisterForm = () => {
   const { isNightMode } = useNightMode();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
-    name:'',
+    email: '',
     password: '',
-    confirmPassword: '',
-    email: ''
+    confirmPassword: ''
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
   const mutation = useMutation(register, {
     onSuccess: () => {
-      setSuccessMessage('Registration successful! ...redirecting');
+      setSuccessMessage('Registration successful!');
       setTimeout(() => {
-        navigate('/');
+        navigate('/login');
       }, 1000);
     },
     onError: (error) => {
       setErrorMessage('Registration failed: ' + (error.response?.data?.detail || error.message));
-    }
+    },
   });
 
   const handleSubmit = (e) => {
@@ -58,7 +56,7 @@ const RegisterForm = () => {
   };
 
   const handleLoginClick = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   return (
@@ -77,12 +75,12 @@ const RegisterForm = () => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="email">Email</label>
           <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -99,23 +97,12 @@ const RegisterForm = () => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="confirm-password">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
-            id="confirm-password"
+            id="confirmPassword"
             name="confirmPassword"
             value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -137,7 +124,7 @@ const RegisterForm = () => {
         </div>
       )}
       <div className="login-link">
-        <p>Already have an account? <button type="button" className="button button-transparent" onClick={handleLoginClick}>Go back to Login</button></p>
+        <p>Already have an account? <button type="button" className="button button-transparent" onClick={handleLoginClick}>Login here</button></p>
       </div>
     </div>
   );

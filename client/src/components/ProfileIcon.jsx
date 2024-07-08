@@ -1,29 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../api/axiosInstance';
 import './ProfileIcon.css';
 
 function ProfileIcon() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axiosInstance.get('/api/auth/me');
+        setUsername(response.data.username);
+      } catch (error) {
+        console.error('Failed to fetch user data', error);
+        navigate('/login');
+      }
+    };
 
-  const handleDropdownClick = (e) => {
-    e.stopPropagation();
+    fetchUserData();
+  }, [navigate]);
+
+  const toggleDropdown = () => setShowDropdown((prev) => !prev);
+  const handleLogout = async () => {
+    try {
+      await axiosInstance.get('/api/auth/logout');
+      localStorage.removeItem('token');
+      navigate('/login');
+    } catch (error) {
+      console.error('Failed to log out', error);
+    }
   };
 
   return (
-    <div className="profile-icon-container" onClick={toggleDropdown}>
-      <button className="profile-icon" aria-haspopup="true" aria-expanded={showDropdown}>
+    <div className="profile-icon-container">
+      <button className="profile-icon" onClick={toggleDropdown} aria-haspopup="true" aria-expanded={showDropdown}>
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+          <circle cx="12" cy="8" r="3" fill="currentColor" />
+          <path d="M12 14c-3.33 0-8 1.67-8 5v1h16v-1c0-3.33-4.67-5-8-5z" fill="currentColor" />
         </svg>
       </button>
       {showDropdown && (
-        <div className="profile-dropdown" onClick={handleDropdownClick}>
-          <p className="username">User123</p>
+        <div className="profile-dropdown" onClick={(e) => e.stopPropagation()}>
+          <p className="username">{username}</p>
           <a href="/profile" className="dropdown-link">Profile</a>
-          <a href="/logout" className="dropdown-link sign-out">Sign Out</a>
+          <button className="dropdown-link sign-out" onClick={handleLogout}>Sign Out</button>
         </div>
       )}
     </div>
