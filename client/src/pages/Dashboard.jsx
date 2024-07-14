@@ -4,7 +4,7 @@ import './Dashboard.css';
 import Header from '../components/Header';
 import DocSubmission from '../components/DocSubmission';
 import Chatbot from '../components/Chatbot';
-import FAQ from '../components/Faq';
+import Faq from '../components/Faq';
 
 function Dashboard() {
   const [activeSection, setActiveSection] = useState('dashboard');
@@ -52,7 +52,7 @@ function Dashboard() {
         </nav>
         <div className="main-section">
           <Routes>
-            <Route path="faq" element={<FAQ />} />
+            <Route path="faq" element={<Faq />} />
             <Route 
               path="*" 
               element={

@@ -14,6 +14,7 @@ const RegisterForm = () => {
   const { isNightMode } = useNightMode();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    name: '',
     username: '',
     email: '',
     password: '',
@@ -44,7 +45,8 @@ const RegisterForm = () => {
       return;
     }
 
-    mutation.mutate(formData);
+    const { confirmPassword, ...dataToSend } = formData;
+    mutation.mutate(dataToSend);
   };
 
   const handleChange = (e) => {
@@ -63,6 +65,17 @@ const RegisterForm = () => {
     <div className={`register-form ${isNightMode ? 'night-mode' : ''}`}>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
+        <div className="input-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className="input-group">
           <label htmlFor="username">Username</label>
           <input
