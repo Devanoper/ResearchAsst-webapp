@@ -1,6 +1,7 @@
 .hoverText {
   display: inline-block;
   transition: transform 0.35s, opacity 0.35s, color 0.35s;
+  will-change: transform, opacity, color;
 }
 
 .hoverText:hover {
@@ -9,22 +10,13 @@
   opacity: 1;
 }
 
-.hoverText:hover + .hoverText {
+.hoverText:hover ~ .hoverText {
   transform: scale(1.1);
   color: rgb(199, 210, 254);
+  opacity: 0.9;
 }
 
-.hoverText:hover + .hoverText + .hoverText {
-  transform: scale(1.05);
-  opacity: 0.8;
-}
-
-.hoverText:has(+ .hoverText:hover) {
-  transform: scale(1.1);
-  color: rgb(199, 210, 254);
-}
-
-.hoverText:has(+ .hoverText + .hoverText:hover) {
+.hoverText:hover ~ .hoverText:hover ~ .hoverText {
   transform: scale(1.05);
   opacity: 0.8;
 }
