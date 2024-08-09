@@ -1,11 +1,4 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 ```
 client
 ├─ .eslintrc.cjs
@@ -18,30 +11,53 @@ client
 ├─ package-lock.json
 ├─ package.json
 ├─ public
+│  ├─ chatbot-logo.jpg
+│  ├─ chatbot-logo.png
 │  ├─ feature-icon1.png
 │  ├─ feature-icon2.png
 │  ├─ feature-icon3.png
 │  ├─ feature-icon4.png
-│  └─ sample-feature-icon.jpg
-├─ README.md
+│  ├─ profile-icon.jpg
+│  ├─ sample-feature-icon.jpg
+│  ├─ send-icon.png
+│  ├─ upload-icon.png
+│  └─ upload-icon1.png
 ├─ src
-│  ├─ App.css
+│  ├─ api
+│  │  └─ axiosInstance.js
 │  ├─ App.jsx
 │  ├─ components
-│  │  ├─ axiosConfig.js
+│  │  ├─ Bubble.module.css
+│  │  ├─ BubbleText.jsx
+│  │  ├─ Chatbot.css
+│  │  ├─ Chatbot.jsx
+│  │  ├─ DocSubmission.css
+│  │  ├─ DocSubmission.jsx
+│  │  ├─ Faq.css
+│  │  ├─ Faq.jsx
 │  │  ├─ FeatureCards.css
 │  │  ├─ FeatureCards.jsx
 │  │  ├─ Header.css
 │  │  ├─ Header.jsx
 │  │  ├─ LoginForm.css
 │  │  ├─ LoginForm.jsx
+│  │  ├─ Particles.jsx
+│  │  ├─ ProfileIcon.css
+│  │  ├─ ProfileIcon.jsx
 │  │  ├─ RegisterForm.css
 │  │  ├─ RegisterForm.jsx
 │  │  ├─ ToggleButton.css
 │  │  └─ ToggleButton.jsx
 │  ├─ index.css
 │  ├─ main.jsx
-│  └─ NightModeContext.jsx
+│  ├─ NightModeContext.jsx
+│  └─ pages
+│     ├─ Dashboard.css
+│     ├─ Dashboard.jsx
+│     ├─ Login.css
+│     ├─ Login.jsx
+│     ├─ Register.css
+│     └─ Register.jsx
 └─ vite.config.js
 
 ```

@@ -2,34 +2,46 @@ import { useState } from 'react';
 import './DocSubmission.css';
 
 function DocSubmission() {
-  const [file, setFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [uploadProgress] = useState(0);
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (file) {
-      console.log('File submitted:', file.name);
-    } else {
-      alert('Please select a file to submit.');
+    const uploadedFile = e.target.files[0];
+    if (uploadedFile) {
+      if (uploadedFile.type === 'application/pdf') {
+        setFileUrl(URL.createObjectURL(uploadedFile));
+        setErrorMessage('');
+      } else {
+        setFileUrl(null);
+        setErrorMessage('Please select a valid PDF file.');
+      }
     }
   };
 
   return (
     <div className="doc-submission">
       <h2>Submit Your Paper</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="file-input-container">
-          <input type="file" id="file-input" onChange={handleFileChange} />
+          <input type="file" id="file-input" accept=".pdf" onChange={handleFileChange} />
           <label htmlFor="file-input">
             <img src="upload-icon.png" alt="Upload Icon" />
-            {file ? file.name : 'Choose a file'}
+            {fileUrl ? 'Change PDF' : 'Choose a PDF file'}
           </label>
         </div>
-        <button type="submit">Submit</button>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {uploadProgress > 0 && (
+          <div className="progress-bar">
+            <div className="progress" style={{ width: `${uploadProgress}%` }}>{uploadProgress}%</div>
+          </div>
+        )}
       </form>
+      {fileUrl && (
+        <div className="file-preview">
+          <embed src={fileUrl} type="application/pdf" />
+        </div>
+      )}
     </div>
   );
 }

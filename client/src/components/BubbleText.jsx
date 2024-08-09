@@ -5,9 +5,13 @@ const BubbleText = ({ text }) => {
   const characters = text.split("");
 
   return (
-    <h2 className="text-center text-5xl font-thin text-indigo-300">
+    <h2 className="text-center text-5xl font-thin text-indigo-300" aria-label={text}>
       {characters.map((character, idx) => (
-        <span className={styles.hoverText} key={idx}>
+        <span
+          className={styles.hoverText}
+          key={idx}
+          aria-hidden="true"
+        >
           {character === " " ? "\u00A0" : character}
         </span>
       ))}

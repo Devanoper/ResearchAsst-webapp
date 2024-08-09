@@ -2,22 +2,40 @@ import './RegisterForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useNightMode } from '../NightModeContext';
 import { useState } from 'react';
-import axios from './axiosConfig';
+import { useMutation } from 'react-query';
+import axiosInstance from '../api/axiosInstance';
+
+const register = async (formData) => {
+  const response = await axiosInstance.post('/api/auth/register', formData);
+  return response.data;
+};
 
 const RegisterForm = () => {
   const { isNightMode } = useNightMode();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    name: '',
     username: '',
+    email: '',
     password: '',
-    confirmPassword: '',
-    email: ''
+    confirmPassword: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = async (e) => {
+  const mutation = useMutation(register, {
+    onSuccess: () => {
+      setSuccessMessage('Registration successful!');
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
+    },
+    onError: (error) => {
+      setErrorMessage('Registration failed: ' + (error.response?.data?.detail || error.message));
+    },
+  });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
@@ -27,30 +45,20 @@ const RegisterForm = () => {
       return;
     }
 
-    setIsSubmitting(true);
-
-    try {
-      await axios.post('/api/auth/register', formData);
-      setSuccessMessage('Registration successful!  ....redirecting');
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      navigate('/');
-    } catch (error) {
-      setErrorMessage('Registration failed: ' + (error.response?.data?.message || error.message));
-    } finally {
-      setIsSubmitting(false);
-    }
+    const { confirmPassword, ...dataToSend } = formData;
+    mutation.mutate(dataToSend);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
       [name]: value
     }));
   };
 
   const handleLoginClick = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   return (
@@ -58,12 +66,34 @@ const RegisterForm = () => {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
           <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
             name="username"
             value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -80,31 +110,20 @@ const RegisterForm = () => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="confirm-password">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
-            id="confirm-password"
+            id="confirmPassword"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
             required
           />
         </div>
-        <div className="input-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
         <div className="button-container">
-        <button type="submit" className={`button button-default ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting}>
-          {isSubmitting ? 'Registering...' : 'Register'}
-        </button>
+          <button type="submit" className={`button button-default ${mutation.isLoading ? 'submitting' : ''}`} disabled={mutation.isLoading}>
+            {mutation.isLoading ? 'Registering...' : 'Register'}
+          </button>
         </div>
       </form>
       {errorMessage && (
@@ -118,7 +137,7 @@ const RegisterForm = () => {
         </div>
       )}
       <div className="login-link">
-        <p> Already have an account? <button type="button" className="button button-transparent" onClick={handleLoginClick}>Go back to Login</button></p>
+        <p>Already have an account? <button type="button" className="button button-transparent" onClick={handleLoginClick}>Login here</button></p>
       </div>
     </div>
   );

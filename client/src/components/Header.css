@@ -12,6 +12,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  height: 50px;
 }
 
 .night-mode {
@@ -42,10 +43,13 @@
   align-items: center;
 }
 
+.header-right > *:not(:last-child) {
+  margin-right: 20px;
+}
+
 .toggle-container {
   display: flex;
   align-items: center;
-  margin-right: 20px;
 }
 
 .toggle-button {

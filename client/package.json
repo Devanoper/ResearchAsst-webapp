@@ -12,9 +12,14 @@
   "dependencies": {
     "@tsparticles/react": "^3.0.0",
     "axios": "^1.7.2",
+    "framer-motion": "^11.2.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.23.1",
+    "react-toastify": "^10.0.5",
+    "react-transition-group": "^4.4.5",
+    "toastify": "^2.0.1",
     "tsparticles": "^3.4.0"
   },
   "devDependencies": {

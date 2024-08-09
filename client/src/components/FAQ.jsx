@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import './FAQ.css';
+import { useState, useRef } from 'react';
+import './Faq.css';
+import propTypes from 'prop-types';
 
 const faqData = [
   {
@@ -19,6 +20,7 @@ const faqData = [
 
 function FAQItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false);
+  const contentRef = useRef(null);
 
   return (
     <div className="faq-item">
@@ -26,12 +28,20 @@ function FAQItem({ question, answer }) {
         <span>{question}</span>
         <span className={`faq-toggle ${isOpen ? 'open' : ''}`}>+</span>
       </div>
-      {isOpen && <div className="faq-answer">{answer}</div>}
+      <div
+        className="faq-answer"
+        ref={contentRef}
+        style={{ height: isOpen ? `${contentRef.current.scrollHeight}px` : '0px' }}
+      >
+        <div className="faq-answer-content">
+          {answer}
+        </div>
+      </div>
     </div>
   );
 }
 
-function FAQ() {
+function Faq() {
   return (
     <div className="faq-container">
       <h2>Frequently Asked Questions</h2>
@@ -42,4 +52,9 @@ function FAQ() {
   );
 }
 
-export default FAQ;
+FAQItem.propTypes = {
+  question: propTypes.string.isRequired,
+  answer: propTypes.string.isRequired,
+};
+
+export default Faq;

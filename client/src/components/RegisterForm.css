@@ -35,7 +35,7 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #555;
+  color: #4e4e4e;
   transition: color 0.3s;
 }
 
@@ -56,6 +56,14 @@
   outline: none;
 }
 
+.night-mode .register-form .input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #e1e1e1;
+  transition: color 0.3s;
+}
+
 .night-mode .register-form .input-group input {
   background: #555;
   border: 1px solid #444;
@@ -66,6 +74,50 @@
   background-color: #666;
   border-color: #66aaff;
   box-shadow: 0 0 5px rgba(102, 170, 255, 0.5);
+}
+
+.register-form .button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.register-form .login-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-form .alert {
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.register-form .alert.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.register-form .alert.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.night-mode .alert.error {
+  background-color: #522529;
+  color: #f5c6cb;
+  border: 1px solid #7b2f3d;
+}
+
+.night-mode .alert.success {
+  background-color: #244a2e;
+  color: #c3e6cb;
+  border: 1px solid #3b6950;
 }
 
 .button {
@@ -130,57 +182,4 @@
 
 .night-mode .button-transparent:hover {
   color: #5599dd;
-}
-
-.register-form p {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.register-form .login-link {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.night-mode .register-form .input-group label {
-  color: #ddd;
-}
-
-.alert {
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.alert.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-.alert.success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.night-mode .alert.error {
-  background-color: #522529;
-  color: #f5c6cb;
-  border: 1px solid #7b2f3d;
-}
-
-.night-mode .alert.success {
-  background-color: #244a2e;
-  color: #c3e6cb;
-  border: 1px solid #3b6950;
-}
-
-.register-form .button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
 }
