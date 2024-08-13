@@ -1,0 +1,38 @@
+{
+  "name": "etal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.51.23",
+    "@tsparticles/react": "^3.0.0",
+    "axios": "^1.7.2",
+    "framer-motion": "^11.2.11",
+    "next": "14.2.5",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.23.1",
+    "react-toastify": "^10.0.5",
+    "react-transition-group": "^4.4.5",
+    "react-tsparticles": "^2.12.2",
+    "toastify": "^2.0.1",
+    "tsparticles": "^3.4.0",
+    "tsparticles-slim": "^2.12.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6"
+  }
+}

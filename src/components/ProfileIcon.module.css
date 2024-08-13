@@ -1,0 +1,77 @@
+.profileIconContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.profileIcon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.profileIcon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.profileIcon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}
+
+.profileDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  background-color: #222;
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: dropdownSlideIn 0.3s ease;
+}
+
+@keyframes dropdownSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.username {
+  color: #ddd;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.dropdownLink {
+  display: block;
+  color: #61dafb;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 0;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  background: none;
+  border: none;
+}
+
+.dropdownLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #a8e6ff;
+}
